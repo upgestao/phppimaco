@@ -22,23 +22,21 @@ class Pimaco
     private $marginBottom;
     private $marginHeader;
     private $marginFooter;
+    private array $template;
 
     private $tags;
 
     /**
      * Pimaco constructor.
-     * @param string $template
+     * @param array $template
      * @param string $path_template
      * @param string $tempDir
      * @throws \Exception
      */
-    public function __construct(string $template, string $path_template = null, string $tempDir = null)
+    public function __construct(array $template, string $path_template = null, string $tempDir = null)
     {
-        $this->path_template = dirname(__DIR__) . "/templates/";
-        if (!empty($path_template)) {
-            $this->path_template = $path_template;
-        }
-        $this->file_template = $template.".json";
+        $this->template = $template;
+
         $this->loadConfig();
 
         $this->tags = new \ArrayObject();
@@ -65,35 +63,26 @@ class Pimaco
         }
     }
 
-    /**
-     * @throws \Exception
-     */
     private function loadConfig()
     {
-        if (!file_exists($this->path_template . $this->file_template)) {
-            throw new \Exception("template not found");
-        }
-        $json = file_get_contents($this->path_template . $this->file_template);
-        $std = json_decode($json);
-
-        $this->width = $std->page->size[0];
-        $this->height = $std->page->size[1];
-        $this->fontSize = $std->page->{'font-size'};
-        $this->orientation = $std->page->orientation;
-        $this->columns = $std->page->columns;
-        $this->unit = $std->page->unit;
-        $this->marginTop = $std->page->{'margin-top'};
-        $this->marginLeft = $std->page->{'margin-left'};
-        $this->marginRight = $std->page->{'margin-right'};
-        $this->marginBottom = $std->page->{'margin-bottom'};
-        $this->marginHeader = $std->page->{'margin-header'};
-        $this->marginFooter = $std->page->{'margin-footer'};
+       
+        $this->width = $this->template['page']['size']['0'];
+        $this->height = $this->template['page']['size']['1'];
+        $this->fontSize = $this->template['page']['font-size'];
+        $this->orientation = $this->template['page']['orientation'];
+        $this->columns = $this->template['page']['columns'];
+        $this->unit = $this->template['page']['unit'];
+        $this->marginTop = $this->template['page']['margin-top'];
+        $this->marginLeft = $this->template['page']['margin-left'];
+        $this->marginRight = $this->template['page']['margin-right'];
+        $this->marginBottom = $this->template['page']['margin-bottom'];
+        $this->marginHeader = $this->template['page']['margin-header'];
+        $this->marginFooter = $this->template['page']['margin-footer'];
     }
 
     public function addTag(Tag $tag)
     {
-        $tag->loadConfig($this->file_template, $this->path_template);
-
+        $tag->loadConfig($this->template);
         $new = $this->tags->count() + 1;
         $cols = $this->columns;
         $rows = ceil($this->tags->count()/$this->columns) + 1;
@@ -114,7 +103,7 @@ class Pimaco
 
     private function addTagBlank()
     {
-        $tag = new Tag('');
+        $tag = new Tag();
         $this->addTag($tag);
     }
 
@@ -133,13 +122,11 @@ class Pimaco
     public function render()
     {
         $this->content = "";
-
         $rows = ceil($this->tags->count()/$this->columns);
         $blank = $this->columns*$rows-$this->tags->count();
         for ($i = 0; $i < $blank; $i++) {
             $this->addTagBlank();
         }
-
         $tags = $this->getTags();
 
         $col = 0;
@@ -163,8 +150,6 @@ class Pimaco
      */
     public function output(string $name = null, string $dest = null)
     {
-//        var_dump($this->render());
-//        exit();
         $this->pdf->WriteHTML($this->render());
         $this->pdf->Output($name, $dest);
     }

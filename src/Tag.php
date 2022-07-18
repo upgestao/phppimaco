@@ -17,48 +17,43 @@ class Tag
     private $size;
     private $padding;
     private $marginLeft;
+    private $template;
 
     /**
      * Tag constructor.
      * @param string|null $content
      */
-    public function __construct(string $content = null)
+    public function __construct(array $tagConfig = null)
     {
+        $this->template = $tagConfig;
         $this->tags = new \ArrayObject();
 
-        if ($content !== null) {
-            $p = new P($content);
-            $this->tags->append($p);
-        }
     }
 
     /**
      * @param string $template
      * @param string $path
      */
-    public function loadConfig(string $template, string $path)
+    public function loadConfig(array $template)
     {
-        $json = file_get_contents($path . $template);
-        $std = json_decode($json);
-
-        $this->width = $std->tag->width;
-        $this->height = $std->tag->height;
-        $this->marginLeft = $std->tag->{'margin-left'};
+        $this->width = $template['tag']['width'];
+        $this->height = $template['tag']['height'];
+        $this->marginLeft =$template['tag']['margin-left'];
 
         if (empty($this->border)) {
-            $this->border = $std->tag->border;
+            $this->border = $template['tag']['border'];
         }
 
         if (empty($this->padding)) {
             $this->padding = 0;
         }
 
-        if (isset($std->tag->ln)) {
-            $this->ln = $std->tag->ln;
+        if (isset($template['tag']['ln'])) {
+            $this->ln = $template['tag']['ln'];
         }
 
-        if (isset($std->tag->align)) {
-            $this->align = $std->tag->align;
+        if (isset($template['tag']['align'])) {
+            $this->align = $template['tag']['align'];
         }
     }
 
@@ -141,7 +136,7 @@ class Tag
      * @param string|null $fontSize
      * @return QrCode
      */
-    public function qrcode(string $content, string $label = null, string $fontSize = null)
+    public function qrcode(string $content, string $label = null, float $fontSize = 5)
     {
         $qrcode = new QrCode($content);
 
@@ -206,18 +201,17 @@ class Tag
         if (!empty($this->align)) {
             $style[] = "text-align: {$this->align}";
         }
-
         $tags = $this->getTags();
         foreach ($tags as $tag) {
-            $this->content .= $tag->render();
+            $this->content .= "<p>". $tag->render()."</p>";
         }
-
+        
         if (!empty($style)) {
             $this->content = "<div style='".implode(";", $style).";'><div style='padding: {$this->padding}mm;'>{$this->content}</div></div>";
         } else {
             $this->content = "<div><div style='padding: {$this->padding}mm;'>{$this->content}</div></div>";
         }
-
+     //   dd($this->content);
         return $this->content;
     }
 }

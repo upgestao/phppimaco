@@ -5,7 +5,7 @@ namespace Proner\PhpPimaco;
 use Proner\PhpPimaco\Tags\Barcode;
 use Proner\PhpPimaco\Tags\Img;
 use Proner\PhpPimaco\Tags\P;
-use Proner\PhpPimaco\Tags\QrCode;
+//use Proner\PhpPimaco\Tags\QrCode;
 
 class Tag
 {
@@ -130,27 +130,27 @@ class Tag
         return $barcode;
     }
 
-    /**
-     * @param string $content
-     * @param string|null $label
-     * @param string|null $fontSize
-     * @return QrCode
-     */
-    public function qrcode(string $content, string $label = null, float $fontSize = 5)
-    {
-        $qrcode = new QrCode($content);
+    // /**
+    //  * @param string $content
+    //  * @param string|null $label
+    //  * @param string|null $fontSize
+    //  * @return QrCode
+    //  */
+    // public function qrcode(string $content, string $label = null, float $fontSize = 5)
+    // {
+    //     $qrcode = new QrCode($content);
 
-        if ($label) {
-            $qrcode->setLabel($label);
-        }
+    //     if ($label) {
+    //         $qrcode->setLabel($label);
+    //     }
 
-        if ($fontSize) {
-            $qrcode->setLabelFontSize($fontSize);
-        }
+    //     if ($fontSize) {
+    //         $qrcode->setLabelFontSize($fontSize);
+    //     }
 
-        $this->tags->append($qrcode);
-        return $qrcode;
-    }
+    //     $this->tags->append($qrcode);
+    //     return $qrcode;
+    // }
 
     /**
      * @param $content

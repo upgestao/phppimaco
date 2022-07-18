@@ -149,5 +149,5 @@
 //         }
 
 //         return "<img ".$style." src='{$qrcode->writeDataUri()}'>".$this->br;
-    }
-}
+//     }
+// }

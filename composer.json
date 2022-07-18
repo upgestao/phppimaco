@@ -22,7 +22,6 @@
         "php": ">=7.0",
         "ext-json": "*",
         "mpdfup/mpdfup": "dev-main",
-        "endroid/qr-code": "^2.5",
         "picqer/php-barcode-generator": "^0.4"
     },
     "autoload-dev": {

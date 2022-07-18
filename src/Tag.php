@@ -136,21 +136,21 @@ class Tag
      * @param string|null $fontSize
      * @return QrCode
      */
-    public function qrcode(string $content, string $label = null, float $fontSize = 5)
-    {
-        $qrcode = new QrCode($content);
+    // public function qrcode(string $content, string $label = null, float $fontSize = 5)
+    // {
+    //     $qrcode = new QrCode($content);
 
-        if ($label) {
-            $qrcode->setLabel($label);
-        }
+    //     if ($label) {
+    //         $qrcode->setLabel($label);
+    //     }
 
-        if ($fontSize) {
-            $qrcode->setLabelFontSize($fontSize);
-        }
+    //     if ($fontSize) {
+    //         $qrcode->setLabelFontSize($fontSize);
+    //     }
 
-        $this->tags->append($qrcode);
-        return $qrcode;
-    }
+    //     $this->tags->append($qrcode);
+    //     return $qrcode;
+    // }
 
     /**
      * @param $content

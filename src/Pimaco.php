@@ -22,7 +22,7 @@ class Pimaco
     private $marginBottom;
     private $marginHeader;
     private $marginFooter;
-    private array $template;
+    private $template;
 
     private $tags;
 

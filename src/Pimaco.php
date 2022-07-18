@@ -57,7 +57,7 @@ class Pimaco
         }
 
         try {
-            $this->pdf = new Mpdf($config);
+            $this->pdf =  $this->pdf =  new \mPDF("UTF-8",[40, 40], $config['default_font_size'],'helvetica', $config['margin_left'],$config['margin_right'],$config['margin_top'],$config['margin_bottom'],$config['margin_header'], $config['margin_footer']);
         } catch (\Exception $e) {
             throw $e;
         }

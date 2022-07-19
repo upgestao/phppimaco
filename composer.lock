@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29fc8bea4351a615b091f8be69086b14",
+    "content-hash": "2cc7387c71d8d89d71e06058c1a73b15",
     "packages": [
         {
             "name": "mpdfup/mpdfup",
-            "version": "dev-main",
+            "version": "v6.1.3a",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guimelaninho/pdfupgestao.git",
@@ -31,7 +31,6 @@
             "suggest": {
                 "ext-zlib": "Needed for compression of embedded resources, such as fonts"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -1880,7 +1879,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "mpdfup/mpdfup": 20
+        "mpdfup/mpdfup": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,

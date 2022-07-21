@@ -1,5 +1,5 @@
 {
-    "name": "gmelaninho/phpetiqueta",
+    "name": "upgestao/phppimaco",
     "description": "Lib para geração de Etiquetas",
     "keywords": ["PIMACO", "etiquetas","tags","hang tags"],
     "license": "MIT",
@@ -9,9 +9,13 @@
             "email": "diogo.fragabemfica@gmail.com"
         },
         {
-            "name": "Guilherme Melaninho",
-            "email": "guilherme@upgestao.com.br"
-        }
+		    "name": "Guilherme Melaninho",
+		    "email": "guilherme@upgestao.com.br"
+		},
+		{
+		  "name": "Samuel Edson",
+		  "email": "samueledson.ti@gmail.com"
+		}
     ],
     "autoload": {
         "psr-4": {

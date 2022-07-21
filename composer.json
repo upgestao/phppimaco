@@ -9,13 +9,13 @@
             "email": "diogo.fragabemfica@gmail.com"
         },
         {
-		    "name": "Guilherme Melaninho",
-		    "email": "guilherme@upgestao.com.br"
-		},
-		{
-		  "name": "Samuel Edson",
-		  "email": "samueledson.ti@gmail.com"
-		}
+	    "name": "Guilherme Melaninho",
+	    "email": "guilherme@upgestao.com.br"
+	},
+	{
+	  "name": "Samuel Edson",
+	  "email": "samueledson.ti@gmail.com"
+	}
     ],
     "autoload": {
         "psr-4": {

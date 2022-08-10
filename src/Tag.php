@@ -203,7 +203,7 @@ class Tag
         }
         $tags = $this->getTags();
         foreach ($tags as $tag) {
-            $this->content .= "<p>". $tag->render()."</p>";
+            $this->content .=  $tag->render();
         }
         
         if (!empty($style)) {

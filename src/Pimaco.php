@@ -57,7 +57,21 @@ class Pimaco
         }
 
         try {
-            $this->pdf =  $this->pdf =  new \mPDF("UTF-8",[$config['format'][0], $config['format'][1]], $config['default_font_size'],'helvetica', $config['margin_left'],$config['margin_right'],$config['margin_top'],$config['margin_bottom'],$config['margin_header'], $config['margin_footer']);
+            $mpdfConfig =[
+           	'mode' => 'utf-8',
+			'format' => [$config['format'][0], $config['format'][1]],
+			'default_font_size' => $config['default_font_size'],
+			'default_font' => 'helvetica',
+			'margin_left' =>$config['margin_left'],
+			'margin_right' => $config['margin_right'],
+			'margin_top' =>$config['margin_top'],
+			'margin_bottom' => $config['margin_bottom'],
+			'margin_header' => $config['margin_header'],
+			'margin_footer' =>$config['margin_footer'],
+			'orientation' => $config['orientation'],
+			'tempDir' => sys_get_temp_dir(),
+        ];
+            $this->pdf =  new \Mpdf\Mpdf($mpdfConfig);
         } catch (\Exception $e) {
             throw $e;
         }
